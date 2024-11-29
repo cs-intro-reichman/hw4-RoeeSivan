@@ -32,7 +32,7 @@ public class Primes {
             j++;
         }
         long precent = (countPrimes*100)/N;
-        System.out.println("There are "+countPrimes+" primes between 2 and "+N+" ("+precent+"%are primes)");
+        System.out.println("There are "+countPrimes+" primes between 2 and "+N+" ("+precent+"% are primes)");
     }
     public static boolean isPrime(int n) // a method that check if a number is prime
     {
