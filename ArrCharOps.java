@@ -1,3 +1,5 @@
+
+
 /** A library of operations on arrays of characters (char values).
  *  The library also features a string comparison method. */
 public class ArrCharOps {
@@ -5,23 +7,18 @@ public class ArrCharOps {
         String str = "clearly";
         char[] arr1 = {'c','l','e','a','r','l','y'};
         char[] arr2 = {'U','n','d','e','r','s','t', 'o', 'o', 'd'};
-        System.out.println(str);  // Prints the string
-        println(arr1);            // Prints an array of characters
+        char[] arr3 = "Somebody stop me".toCharArray();
+        char[] arr4 = subArray(arr3, 9, 16); 
+        println(arr4);            // Prints an array of characters
+        boolean test1 = ArrCharOps.compareTo("abc", "abc") == 0;
+        boolean test2 = ArrCharOps.compareTo("abc", "aBc") == 1;
+        boolean test3 = ArrCharOps.compareTo("abc", "abcd") == -1;
+        System.out.println(test1);
+        System.out.println(test2);
+        System.out.println(test3);
         System.out.println(charAt(arr1,2));      
-        System.out.println(indexOf(arr1,'l'));  
-        System.out.println(indexOf(arr1,'l',3)); 
-        System.out.println(lastIndexOf(arr1, 'l'));
-        System.out.println(concat(arr1, arr2));
-        System.out.println(subArray(arr2, 2, 9));
-        System.out.println(compareTo("abcd", "abcd"));
-        System.out.println(compareTo("abc", "abcd"));
-        System.out.println(compareTo("abw", "abcd"));
-        System.out.println(compareTo("Abcd", "a"));
-        System.out.println(compareTo("apple", "banana"));
-        System.out.println(compareTo("apple", "applepie"));
-        System.out.println(compareTo("Zoo", "zoo"));
-        System.out.println(hashCode(arr1));
-        System.out.println(hashCode(arr2));
+
+
     }
 
     /** Prints the given array of characters, and moves the cursor to the next line.
@@ -37,7 +34,9 @@ public class ArrCharOps {
      */
     public static char charAt(char[] arr, int index) {
         // Replace the following statement with your code
-        return 0;
+        if(index==0) return 0;
+        char ch = arr[index];
+        return ch;
     }
 
     /** If the two arrays have the same value in every index, 
@@ -45,7 +44,15 @@ public class ArrCharOps {
      */
     public static boolean equals(char[] arr1, char[] arr2) {
         // Replace the following statement with your code
-        return false;
+        if(arr1.length!=arr2.length)
+        {  return false;
+        }
+        for (int i =0;i<arr1.length;i++)
+        {
+            if (arr1[i]!=arr2[i]) return false;
+            
+        }
+        return true;
     }
 
     /** Returns the index within the given array of the first occurrence of the given character.
@@ -53,6 +60,13 @@ public class ArrCharOps {
      */
     public static int indexOf(char[] arr, char ch) {
         // Replace the following statement with your code
+        for(int i=0;i<arr.length;i++)
+        {
+            if(arr[i]==ch)
+            {
+                return i;
+            }
+        }
         return -1;
     }
 
@@ -60,6 +74,13 @@ public class ArrCharOps {
      */
     public static int indexOf(char[] arr, char ch, int fromIndex) {
         // Replace the following statement with your code
+        for(int i=fromIndex;i<arr.length;i++)
+        {
+            if(arr[i]==ch)
+            {
+                return i;
+            }
+        }
         return -1;
     }
 
@@ -68,14 +89,39 @@ public class ArrCharOps {
      */
     public static int lastIndexOf(char[] arr, char ch) {
         // Replace the following statement with your code
+        for(int i= arr.length-1;i>0;i--)
+        {
+            if(arr[i]==ch)
+            {
+                return i;
+            }
+            if(i==-1)
+            {
+             return -1;
+            }
+        }
         return -1;
     }
-
     /* Returns an array which is the concatanation of the two given arrays.
     */
     public static char[] concat(char[] arr1, char[] arr2) {
         // Replace the following statement with your code
+        char [] con = new char[arr1.length+arr2.length];
+        if (arr1.length==0)
+        return arr2;
+        if (arr2.length==0)
+        return arr1;
+        if ((arr1.length==0)&&(arr2.length==0))
         return null;
+        for( int i =0;i<arr1.length;i++)
+        {
+            con[i] += arr1[i];
+        }
+        for( int j =0;j<arr2.length;j++)
+        {
+            con[arr1.length +j] += arr2[j];
+        }
+        return con;
     }
 
     /** Returns a new array that can be described as a sub-array of this array.
@@ -84,8 +130,13 @@ public class ArrCharOps {
      *  characters containing the characters "urge".
      */     
     public static char[] subArray(char[] arr, int beginIndex, int endIndex) {
-        // Replace the following statement with your code
-        return null;
+        int size = endIndex - beginIndex;
+        char [] con = new char[size];
+        for(int i=0; i<size;i++)
+        {
+            con[i] += arr[beginIndex+i];
+        }
+       return con;
     }
 
      /** Returns a single integer that represents the given array. This integer is sometimes 
@@ -96,8 +147,16 @@ public class ArrCharOps {
      *  The hash value of an empty array is zero.
      */
     public static long hashCode(char[] arr) {
+        long hash=0;
+        long power =1;
         // Replace the following statement with your code
-        return 0;
+        if(arr.length==0) return 0;
+        for(int j=arr.length-1;j>=0;j--)
+        {
+           hash += arr[j]*power;
+           power*=7;
+        }
+        return hash;
     }
 
     /**
@@ -126,7 +185,22 @@ public class ArrCharOps {
      *         return -2 if there is an error with the input.
      */
     public static int compareTo(String str1, String str2) {
-        // Replace the following statement with your code
-        return 0;
-    }
+
+        if((str1.length()==0) || (str2.length()==0)) return -2;// -2 if there are empy strings
+        int minLength = Math.min(str1.length(),str2.length());
+        for(int i=0;i < minLength;i++)
+        {
+             char ch1 = str1.charAt(i);
+             char ch2 = str2.charAt(i);
+             if(ch1 != ch2)
+             {
+                 return ch1 < ch2 ? -1:1; //-1 if str is smaller, 1 if str1 is bigger
+             }
+        }
+        if(str1.equals(str2))// return 0 if they are equal
+        {
+            return 0;
+        }
+     return str1.length() < str2.length() ? -1 : 1; // -1 if str is smaller, 1 if str1 is bigger
+}
 }
