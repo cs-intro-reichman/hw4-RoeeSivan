@@ -11,7 +11,7 @@ public class Primes {
         numArrray[1]=1;
         int i =2,j=2;
         int countPrimes=0;
-        System.out.println("Prime numbers up to "+N+":");
+        System.out.println("Prime numbers up to "+N);
         while(i!=found.length)//initilizing true in every element except 0 and 1
         {
             found[i]=true;
@@ -23,7 +23,7 @@ public class Primes {
             if(isPrime(numArrray[j]))
             {   countPrimes++;
                 found[j]=false;
-                System.err.println(numArrray[j]);
+                System.out.println(numArrray[j]);
             }
             else
             {
