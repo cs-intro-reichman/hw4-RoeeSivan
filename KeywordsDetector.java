@@ -64,7 +64,10 @@ public class KeywordsDetector {
     {
         for (int i =0; i<arr.length;i++)
         {
-            System.out.print(arr[i]+" ");
+            System.out.print(arr[i]);
+            if (i < arr.length - 1) { // Add a space only if it's not the last word
+            System.out.print(" ");
+        }
         }
     }
 
