@@ -31,7 +31,7 @@ public class KeywordsDetector {
         }
         String[] words = new String[count+1];
         int wordIndex=0;
-        for(int i=0;i<element.length()&&(wordIndex!=words.length);i++)
+        for(int i=0; i<element.length() && (wordIndex!=words.length); i++)
         {
             if(element.charAt(i)!=' ')
             {
