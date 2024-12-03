@@ -13,10 +13,6 @@ public class ArrCharOps {
         boolean test1 = ArrCharOps.compareTo("abc", "abc") == 0;
         boolean test2 = ArrCharOps.compareTo("abc", "aBc") == 1;
         boolean test3 = ArrCharOps.compareTo("abc", "abcd") == -1;
-        System.out.println(test1);
-        System.out.println(test2);
-        System.out.println(test3);
-        System.out.println(charAt(arr1,2));      
 
 
     }
